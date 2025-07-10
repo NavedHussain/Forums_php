@@ -39,9 +39,9 @@
 </div>
 
   <!-- Categories start here -->
-        <div class="container my-3">
+        <div class="container my-4">
 
-          <h2 class="text-center my-3">iDiscuss - Browse Categories</h2>
+          <h2 class="text-center my-4">iDiscuss - Browse Categories</h2>
           <div class="row my-4">
 
             <!-- Fetch all the categoties and    Use a for loop to iterate through Categories -->
@@ -63,10 +63,12 @@
              <a href="#" class="btn btn-primary">View Threads</a>
            </div>
          </div>
-             </div>';
+         </div>';
 
            }
         ?>
+      </div>
+    </div>
 
     <?php  include 'partials/_footer.php'; ?>
   <!-- Bootstrap Bundle JS (includes Popper.js) -->
