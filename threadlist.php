@@ -9,37 +9,59 @@
   <body>
     <?php  include 'partials/_header.php'; ?>
     <?php  include 'partials/_dbconnect.php'; ?>
+    <?php
+    $id = $_GET['catid'];
+      $sql =  "SELECT * FROM `categories` WHERE category_id=$id";
+      $result = mysqli_query($conn,$sql);
+      while ($row = mysqli_fetch_assoc($result)){
+        $catname = $row['category_name'];
+        $catdesc = $row['category_description'];
+
+        }
+     ?>
 
 
   <!-- Categories start here -->
         <div class="container my-4">
 
           <div class="jumbotron">
-            <h1 class="display-4">Welcome to python forums</h1>
-            <p class="leas">React is awesome but Python is an interpreted, high-level,
-              gerneral-purpose programming language. Python can be used on a server to create web applications.</p>
+            <h1 class="display-4">Welcome to <?php echo $catname; ?> forums</h1>
+            <p class="leas"><?php echo $catdesc; ?>.</p>
             <hr class="my-4">
           <p> This is a perr to peer forum.No Spam / Advertising / Self-promote in the forums is not allowed.
               Do not post copyright-infringing material.Do not post “offensive” posts, links or images.
               Do not cross post questions.Remain respectful of other members at all times.</p>
-            <a class="btn btn-primary btn-lg" href="#" role="button">learn more</a>
+            <a class="btn btn-success btn-lg" href="#" role="button">learn more</a>
           </div>
       </div>
 
       <div class="container">
     <h1 class="py-2">Browse Question</h1>
-    <div class="d-flex align-items-center my-3">
+    <?php
+    $id = $_GET['catid'];
+      $sql =  "SELECT * FROM `threads` WHERE thread_cat_id=$id;";
+      $result = mysqli_query($conn,$sql);
+      while ($row = mysqli_fetch_assoc($result)){
+        $id = $row['thread_id'];
+        $title = $row['thread_title'];
+        $desc = $row['thread_desc'];
+
+
+
+  echo '<div class="d-flex align-items-center my-3">
     <img src="images.png" width="54px" class="me-3" alt="...">
       <div>
-        <h5 class="mt-0 mb-1">Unable to install Pyaudio error in Windows </h5>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
-        ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-        laboris nisi ut aliquip ex ea commodo consequat.
+        <h5 class="mt-0 mb-1">  <a href="thread.php">'. $title .' </a></h5>
+        '. $desc .'
       </div>
-    </div>
+    </div>';
+  }
+?>
 
 
-  <div class="d-flex align-items-center media my-3">
+
+  <!-- Remove later; putting this just to check html alignment for now -->
+  <!-- <div class="d-flex align-items-center media my-3">
   <img src="images.png" width="54px" class="me-3" alt="...">
     <div>
       <h5 class="mt-0 ">Unable to install Pyaudio error in Windows </h5>
@@ -47,61 +69,7 @@
       ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
       laboris nisi ut aliquip ex ea commodo consequat.
     </div>
-  </div>
-
-  <div class="d-flex align-items-center media my-3">
-  <img src="images.png" width="54px" class="me-3" alt="...">
-    <div>
-      <h5 class="mt-0 ">Unable to install Pyaudio error in Windows </h5>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
-      ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-      laboris nisi ut aliquip ex ea commodo consequat.
-    </div>
-  </div>
-
-  <div class="d-flex align-items-center media my-3">
-  <img src="images.png" width="54px" class="me-3" alt="...">
-    <div>
-      <h5 class="mt-0 ">Unable to install Pyaudio error in Windows </h5>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
-      ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-      laboris nisi ut aliquip ex ea commodo consequat.
-    </div>
-  </div>
-
-  <div class="d-flex align-items-center media my-3">
-  <img src="images.png" width="54px" class="me-3" alt="...">
-    <div>
-      <h5 class="mt-0 ">Unable to install Pyaudio error in Windows </h5>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
-      ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-      laboris nisi ut aliquip ex ea commodo consequat.
-    </div>
-  </div>
-
-  <div class="d-flex align-items-center media my-3">
-  <img src="images.png" width="54px" class="me-3" alt="...">
-    <div>
-      <h5 class="mt-0 ">Unable to install Pyaudio error in Windows </h5>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
-      ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-      laboris nisi ut aliquip ex ea commodo consequat.
-    </div>
-  </div>
-
-  <div class="d-flex align-items-center media my-3">
-  <img src="images.png" width="54px" class="me-3" alt="...">
-    <div>
-      <h5 class="mt-0 ">Unable to install Pyaudio error in Windows </h5>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
-      ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-      laboris nisi ut aliquip ex ea commodo consequat.
-    </div>
-  </div>
-
-</div>
-
-
+  </div> -->
 
     <?php  include 'partials/_footer.php'; ?>
   <!-- Bootstrap Bundle JS (includes Popper.js) -->

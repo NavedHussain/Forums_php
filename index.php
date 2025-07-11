@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Welcome to iDiscuss - Coding Forums</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <style>
+        #ques{
+          min-height: 433px;
+        }
+    </style>
   </head>
   <body>
     <?php  include 'partials/_header.php'; ?>
@@ -19,13 +24,13 @@
 </div>
 <div class="carousel-inner">
   <div class="carousel-item active">
-    <img src="Slide.jpg" class="d-block w-100" alt="slide" height="400" width="400">
+    <img src="img/slider-4.jpg" class="d-block w-100" alt="slide" height="400" width="40">
   </div>
   <div class="carousel-item">
-    <img src="Slide_1.jpg" class="d-block w-100" alt="..."  height="450" width="400">
+    <img src="img/slider-5.jpg" class="d-block w-100" alt="..."  height="500" width="100">
   </div>
   <div class="carousel-item">
-    <img src="Slide_3.jpg" class="d-block w-100" alt="..."  height="450" width="400">
+    <img src="img/slider-6.jpg" class="d-block w-100" alt="..."  height="400" width="100">
   </div>
 </div>
 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -39,7 +44,7 @@
 </div>
 
   <!-- Categories start here -->
-        <div class="container my-4">
+        <div class="container my-4" id="ques">
 
           <h2 class="text-center my-4">iDiscuss - Browse Categories</h2>
           <div class="row my-4">
@@ -51,16 +56,18 @@
            while ($row = mysqli_fetch_assoc($result)){
              // echo $row['category_id'];
              // echo $row['category_name'];
+             $id = $row['category_id'];
              $cat = $row['category_name'];
              $desc = $row['category_description'];
              echo  '<div class="col-md-4 my-2">
                    <div class="card" style="width: 18rem;">
-           <img src="nature.jpg ' . $cat . ',coding"
-           class="card-img-top" alt="">
+           <img src="img/card-' .$id. '.jpg" class="card-img-top" alt="image for this category">
            <div class="card-body">
-             <h5 class="card-title">' . $cat . '</h5>
+             <h5 class="card-title"><a href="threadlist.php?catid= ' . $id . '">'
+             . $cat . '</a></h5>
              <p class="card-text">' . substr ($desc, 0,90 ) . '.....</p>
-             <a href="#" class="btn btn-primary">View Threads</a>
+             <a href="threadlist.php?catid= ' . $id . '" class="btn
+             btn-primary">View Threads</a>
            </div>
          </div>
          </div>';
