@@ -32,7 +32,7 @@
     $showAlert=false;
      $method = $_SERVER['REQUEST_METHOD'];
      if ($method=='POST'){
-      //inster into threas into DB
+      //inster into threas  DB
       $th_title = $_POST['title'];
       $th_desc = $_POST['desc'];
       $sql =  "INSERT INTO `threads` (`thread_title`, `thread_desc`, `thread_cat_id`, `thread_user_id`, 
@@ -41,7 +41,7 @@
        $showAlert=true;
       if($showAlert){
           echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
-                <strong>Success! </strong> Your thread hasbeen added! Please wait for community to
+                <strong>Success! </strong> Your thread has been added! Please wait for community to
                  respond.
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -97,12 +97,14 @@
         $id = $row['thread_id'];
         $title = $row['thread_title'];
         $desc = $row['thread_desc'];
+        $thread_time = $row['timestamp'];
 
 
 
   echo '<div class="d-flex align-items-center my-3">
     <img src="images.png" width="54px" class="me-3" alt="...">
       <div class="media-body">
+      <p class="font-weight-bold my-0">Anonymous user  '. $thread_time . ' </p>
         <h5 class="mt-0 mb-1">  <a href="thread.php?threadid='. $id . '">'. $title .' </a></h5>
         '. $desc .'
       </div>

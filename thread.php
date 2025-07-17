@@ -28,6 +28,28 @@
         }
      ?>
 
+    <?php
+    $showAlert=false;
+     $method = $_SERVER['REQUEST_METHOD'];
+     if ($method=='POST'){
+      //inster into Comment DB
+      $comment = $_POST['comment'];
+      $sql =  "INSERT INTO `comments` (`comment_content`, `thread_id`, `comment_by`, 
+      `comment_time`) VALUES ('$comment', '$id', '0', current_timestamp());";
+       $result = mysqli_query($conn,$sql);
+       $showAlert=true;
+      if($showAlert){
+          echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Success! </strong> Your comment has been added!
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+          </div>';
+      }
+     }
+      ?>
+
+
 
     <!-- Categories start here -->
     <div class="container my-4">
@@ -39,14 +61,14 @@
             <p> This is a perr to peer forum.No Spam / Advertising / Self-promote in the forums is not allowed.
                 Do not post copyright-infringing material.Do not post “offensive” posts, links or images.
                 Do not cross post questions.Remain respectful of other members at all times.</p>
-            <p> <b>Post by: Naved</p>
+            <p> Post by: <b>Naved</p>
         </div>
     </div>
 
-        <div class="container">
+    <div class="container">
         <h1 class="py-2">Post a Comment</h1>
         <form action="<?php echo $_SERVER['REQUEST_URI'] ?> " method="post">
-         
+
             <div class="form-group">
                 <br> <label for="exampleFromControlTextarea1">Type Your Comment</label>
                 <textarea class="form-control" id="comment" name="comment" rows="3"></textarea>
@@ -71,13 +93,14 @@ $id = $_GET['threadid'];
   $noResult = false;
     $id = $row['comment_id'];
     $content = $row['comment_content'];
+    $comment_time = $row['comment_time'];
 
 
 
 echo '<div class="d-flex align-items-center my-3">
 <img src="images.png" width="54px" class="me-3" alt="...">
   <div class="media-body">
-   
+  <p class="font-weight-bold my-0">Anonymous user  '. $comment_time . ' </p>
     '. $content .'
   </div>
 </div>';
@@ -92,7 +115,7 @@ if($noResult){
   </div>';
 
 }
- ?> 
+ ?>
     </div>
 
     <?php  include 'partials/_footer.php'; ?>
